@@ -70,6 +70,7 @@ namespace DependencyInjectionDP
 
             // Injecting the dependency manually
             // However, in real scenarios in ASP.NET Core, the dependency is automatically created and injected by the DI container.
+            // For example: IServiceCollection.AddSingleton<ILogger, ConsoleLogger>();
             var userService = new UserService(logger);
 
             userService.CreateUser("Amir");
