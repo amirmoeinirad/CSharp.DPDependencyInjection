@@ -32,22 +32,23 @@ namespace DependencyInjectionDP
 
 
     ////////////////////////////////////////////////////////
-    
 
-    public class UserService 
+
+    // The UserService class depends on ILogger as its dependency
+    public class UserService
     {
         private readonly ILogger _logger;
 
         // Dependency Injection via constructor.
         public UserService(ILogger logger)
         {
-            Console.WriteLine("Creating user...");
+            Console.WriteLine("Creating user service...");
             _logger = logger;
         }
 
         public void CreateUser(string name)
         {
-            Console.WriteLine($"\nUser '{name}' created.");
+            Console.WriteLine($"User '{name}' created.");
             _logger.Log("User created successfully.");
         }
     }
@@ -69,11 +70,12 @@ namespace DependencyInjectionDP
             ILogger logger = new ConsoleLogger();
 
             // Injecting the dependency manually
-            // However, in real scenarios in ASP.NET Core, the dependency is automatically created and injected by the DI container.
-            // For example: IServiceCollection.AddSingleton<ILogger, ConsoleLogger>();
+            // However, in real scenarios in ASP.NET Core, the dependency is automatically created and injected by the DI container.            
             var userService = new UserService(logger);
 
             userService.CreateUser("Amir");
+
+            Console.WriteLine("\nDone.");
         }
     }
 }
